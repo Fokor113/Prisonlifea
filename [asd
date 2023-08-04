@@ -1,0 +1,70 @@
+local Library = loadstring(game:HttpGet("https://raw.githubusercontent.com/xHeptc/Kavo-UI-Library/main/source.lua"))()
+local Window = Library.CreateLib("Prison Life | Beta", "Ocean")
+
+local Main = Window:NewTab("Main")
+local MainSection = Main:NewSection("Main")
+
+local Players = Window:NewTab("Player")
+local PlayersSection = Players:NewSection("Player")
+
+local Giver = Window:NewTab("Giver")
+local GiverSection = Giver:NewSection("Giver")
+
+local Gun = Window:NewTab("Gun")
+local GunSection = Gun:NewSection("Gun")
+
+
+
+
+
+GiverSection:NewDropdown("Give Guns", "Give all guns", {"M9", "Remington 870", "Ak-47"}, function(v)
+       local A_1 = game:GetService("Workspace")["Prison_ITEMS"].giver[v].ITEMPICKUP
+       local Event = game:GetService("Workspace").Remote.ItemHandler
+       Event:InvokeServer(A_1)
+end)
+
+GunSection:NewDropdown("Mod Guns", "Guns is OP moded", {"M9", "Remington 870", "Ak-47"}, function(currentOption)
+    local module = nil
+    if game:GetService("Players").LocalPlayer.Backpack:FindFirstChild("")
+     module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+     elseif game:GetService("Players").LocalPlayer.Character:FindFirstChild(v) then
+    module = require(game:GetService("Players").LocalPlayer.Backpack[v].GunStates)
+end
+if module ~= nil then
+   module["MaxAmmo"] = math.huge
+   module["CurrentAmmo"] = math.huge
+   module["StoredAmmo"] = math.huge
+   module["FireRate"] = 0.00000000000000001
+   module["Spread"] = 0
+   module["Range"] = math.huge
+   module["Bullets"] = 10
+   module["ReloadTime"] = 0.000000001
+   end
+end)
+
+
+
+
+
+
+
+PlayersSection:NewSlider("WalkSpeed", "Speed walk", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.WalkSpeed = s
+end)
+
+PlayersSection:NewSlider("JumpPower", "Hight Jump", 500, 0, function(s) -- 500 (MaxValue) | 0 (MinValue)
+    game.Players.LocalPlayer.Character.Humanoid.JumpPower = s
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+
